@@ -215,6 +215,11 @@ LinkerNode::~LinkerNode()
 //------------------------------------------------------------------------------
 void LinkerNode::DoPreLinkCleanup() const
 {
+	// Trying skipping this; it causes problems by tossing debug information that
+	// is provided by pch files, if those files are not rebuilt. e.g. try changing time.h
+	if (IsEnabled<1>())
+		return;
+
 	// only for Microsoft compilers
 	if ( GetFlag( LINK_FLAG_MSVC ) == false )
 	{

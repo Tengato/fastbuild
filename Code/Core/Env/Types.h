@@ -8,6 +8,16 @@
     #include <sys/types.h>
 #endif
 
+template<int M>
+inline bool IsEnabled() {
+    return true;
+}
+
+template<>
+inline bool IsEnabled<0>() {
+    return false;
+}
+
 typedef unsigned char		uint8_t;
 typedef signed char			int8_t;
 typedef unsigned short		uint16_t;
